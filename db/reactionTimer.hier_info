@@ -1,139 +1,23 @@
 |reactionTimer
-Clock => Clock.IN1
-Reset => Reset.IN1
-Pushn => always0.IN0
-LEDn <= LED.DB_MAX_OUTPUT_PORT_TYPE
-Digit1[7] <= seg7:seg1.port1
-Digit1[6] <= seg7:seg1.port1
-Digit1[5] <= seg7:seg1.port1
-Digit1[4] <= seg7:seg1.port1
-Digit1[3] <= seg7:seg1.port1
-Digit1[2] <= seg7:seg1.port1
-Digit1[1] <= seg7:seg1.port1
-Digit0[7] <= seg7:seg0.port1
-Digit0[6] <= seg7:seg0.port1
-Digit0[5] <= seg7:seg0.port1
-Digit0[4] <= seg7:seg0.port1
-Digit0[3] <= seg7:seg0.port1
-Digit0[2] <= seg7:seg0.port1
-Digit0[1] <= seg7:seg0.port1
-
-
-|reactionTimer|clockDivider:hundredHertz
-Clock => c19~reg0.CLK
-Clock => Q[0].CLK
-Clock => Q[1].CLK
-Clock => Q[2].CLK
-Clock => Q[3].CLK
-Clock => Q[4].CLK
-Clock => Q[5].CLK
-Clock => Q[6].CLK
-Clock => Q[7].CLK
-Clock => Q[8].CLK
-Clock => Q[9].CLK
-Clock => Q[10].CLK
-Clock => Q[11].CLK
-Clock => Q[12].CLK
-Clock => Q[13].CLK
-Clock => Q[14].CLK
-Clock => Q[15].CLK
-Clock => Q[16].CLK
-Clock => Q[17].CLK
-Clock => Q[18].CLK
-Clock => Q[19].CLK
-c19 <= c19~reg0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|reactionTimer|BCDcount:counter
-Clock => BCD0[0]~reg0.CLK
-Clock => BCD0[1]~reg0.CLK
-Clock => BCD0[2]~reg0.CLK
-Clock => BCD0[3]~reg0.CLK
-Clock => BCD1[0]~reg0.CLK
-Clock => BCD1[1]~reg0.CLK
-Clock => BCD1[2]~reg0.CLK
-Clock => BCD1[3]~reg0.CLK
-Clear => BCD1.OUTPUTSELECT
-Clear => BCD1.OUTPUTSELECT
-Clear => BCD1.OUTPUTSELECT
-Clear => BCD1.OUTPUTSELECT
-Clear => BCD0.OUTPUTSELECT
-Clear => BCD0.OUTPUTSELECT
-Clear => BCD0.OUTPUTSELECT
-Clear => BCD0.OUTPUTSELECT
-E => BCD0.OUTPUTSELECT
-E => BCD0.OUTPUTSELECT
-E => BCD0.OUTPUTSELECT
-E => BCD0.OUTPUTSELECT
-E => BCD1.OUTPUTSELECT
-E => BCD1.OUTPUTSELECT
-E => BCD1.OUTPUTSELECT
-E => BCD1.OUTPUTSELECT
-BCD1[0] <= BCD1[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD1[1] <= BCD1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD1[2] <= BCD1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD1[3] <= BCD1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD0[0] <= BCD0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD0[1] <= BCD0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD0[2] <= BCD0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-BCD0[3] <= BCD0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|reactionTimer|seg7:seg1
-bcd[0] => Mux0.IN19
-bcd[0] => Decoder0.IN2
-bcd[0] => Mux1.IN19
-bcd[0] => Mux2.IN19
-bcd[0] => Mux3.IN19
-bcd[1] => Mux0.IN18
-bcd[1] => Decoder0.IN1
-bcd[1] => Mux1.IN18
-bcd[1] => Mux2.IN18
-bcd[1] => Mux3.IN18
-bcd[2] => Mux0.IN17
-bcd[2] => Decoder0.IN0
-bcd[2] => Mux1.IN17
-bcd[2] => Mux2.IN17
-bcd[2] => Mux3.IN17
-bcd[3] => Mux0.IN16
-bcd[3] => Mux1.IN16
-bcd[3] => Mux2.IN16
-bcd[3] => Mux3.IN16
-leds[7] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
-leds[6] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
-leds[5] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
-leds[4] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
-leds[3] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
-leds[2] <= leds.DB_MAX_OUTPUT_PORT_TYPE
-leds[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|reactionTimer|seg7:seg0
-bcd[0] => Mux0.IN19
-bcd[0] => Decoder0.IN2
-bcd[0] => Mux1.IN19
-bcd[0] => Mux2.IN19
-bcd[0] => Mux3.IN19
-bcd[1] => Mux0.IN18
-bcd[1] => Decoder0.IN1
-bcd[1] => Mux1.IN18
-bcd[1] => Mux2.IN18
-bcd[1] => Mux3.IN18
-bcd[2] => Mux0.IN17
-bcd[2] => Decoder0.IN0
-bcd[2] => Mux1.IN17
-bcd[2] => Mux2.IN17
-bcd[2] => Mux3.IN17
-bcd[3] => Mux0.IN16
-bcd[3] => Mux1.IN16
-bcd[3] => Mux2.IN16
-bcd[3] => Mux3.IN16
-leds[7] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
-leds[6] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
-leds[5] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
-leds[4] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
-leds[3] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
-leds[2] <= leds.DB_MAX_OUTPUT_PORT_TYPE
-leds[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+Clock => LED2~reg0.CLK
+Clock => LED~reg0.CLK
+Reset => ~NO_FANOUT~
+Pushn => Q~1.DATAIN
+LED <= LED~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LED2 <= LED2~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[7] <= <GND>
+Digit1[6] <= <GND>
+Digit1[5] <= <GND>
+Digit1[4] <= <GND>
+Digit1[3] <= <GND>
+Digit1[2] <= <GND>
+Digit1[1] <= <GND>
+Digit0[7] <= <GND>
+Digit0[6] <= <GND>
+Digit0[5] <= <GND>
+Digit0[4] <= <GND>
+Digit0[3] <= <GND>
+Digit0[2] <= <GND>
+Digit0[1] <= <GND>
 
 

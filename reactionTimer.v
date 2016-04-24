@@ -2,25 +2,72 @@
 
 //Reaction timer circuit made for ECEN 2350: Digital Logic
 
-module reactionTimer(Clock, Reset, Pushn, LEDn, Digit1, Digit0);
+//This reactionTimer is a finite state machine with 3 states
+//State 1 (Q=1): LED OFF, NO Timer counting
+	//default state
+//State 2 (Q=2): LED off, Random generator timer counting, No timer counting
+	//reaction timer started, once random time counted the machine will enter state 3
+//State 3 (Q-3): LED ON, timer counting
+	//LED on and time counts until user presses button to go back to state 1
+
+module reactionTimer(Clock, Reset, Pushn, LED, LED2, Digit1, Digit0);
 
 	input Clock, Reset,Pushn;
-	output wire LED;
+	output reg LED, LED2 = 0;
 	output wire [1:7]Digit1,Digit0;
-	//reg LED;								//when you make a register, is it 
-	wire [3:0]BCD1,BCD0;					//essentially adding a d-fliplop
-	wire c9; 								//or some flip-flop to the circuit
-	wire Q;									//to store the value?
+	//reg LED;								
+	wire [3:0]BCD1,BCD0;					
+	wire c9; 								
+	reg[1:0]Q;								
+	//initialize Q to 1
+	//assign LED = 1;
+	
 	
 	always@(posedge Clock)
 	begin
-		if(Q == 0)
-			LED<=1;
-		else if(Q == 1)
-			LED<=0
-	
+		
+		if(Q == 1)
+		begin
+			LED<=0; //LED OFF (LED CONTROLS IF LIGHT IS ON AND IF COUNTER IS ENABLED)
+
+		end
+		else if(Q == 2)
+		begin
+			LED<=1; //LED OFF
+			LED2<=1;
+
+		end
+		else if(Q == 3)
+		begin
+			LED<=1; //LED ON
+
+		end
+		
 	end
+
+
+	always@(negedge Pushn) //when you press button, change state accordingly
+	begin
 	
+	/*
+		if(Q = 1) LED<=1;
+		else LED <=1;*/ //TEST
+		Q = 2;
+		//LED2 = 1;
+	/*
+		if(Q==1) 
+		begin
+		Q<=2; //if in state 1, go to state 2
+		end
+		
+		else if(Q==3) 
+		begin
+		Q<=1; //if in state 3, go to state 1 
+		end
+		else Q = Q;
+		*/
+	end
+
 	
 	/*
 	always @(posedge Clock)
@@ -34,12 +81,12 @@ module reactionTimer(Clock, Reset, Pushn, LEDn, Digit1, Digit0);
 	*/
 
 	//assign LEDn = ~LED;
-
+	/*
 	clockDivider hundredHertz(Clock,c9); //divide clock to get our frequency
 
-	BCDcount counter(c9,Reset,~LED,BCD1,BCD0);
+	BCDcount counter(c9,Reset,LED,BCD1,BCD0);
 	seg7 seg1(BCD1,Digit1);
-	seg7 seg0(BCD0,Digit0);
+	seg7 seg0(BCD0,Digit0);*/
 
 
 /*
@@ -67,7 +114,7 @@ module BCDcount(Clock,Clear,E,BCD1,BCD0);
 			BCD1<=0;
 			BCD0<=0;
 		end
-		else if (E) //if enable...
+		else if (~Clear) //if enable...
 			if(BCD0==4'b1001)//if BCD0 is 9 (left digit)
 			begin
 				BCD0<=0; //set it back to 0
@@ -131,6 +178,16 @@ module clockDivider(Clock,c19);
 	end
 
 endmodule
+
+/*
+module findQ(q,Q);
+	input q;
+	output reg Q;
+
+	if (q = 1)
+	 
+	
+endmodule*/
 
 
 		
