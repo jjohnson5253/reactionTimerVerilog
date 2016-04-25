@@ -1,5 +1,5 @@
 Assembler report for reactionTimer
-Sun Apr 24 13:12:46 2016
+Sun Apr 24 21:04:56 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Apr 24 13:12:46 2016 ;
+; Assembler Status      ; Successful - Sun Apr 24 21:04:56 2016 ;
 ; Revision Name         ; reactionTimer                         ;
 ; Top-level Entity Name ; reactionTimer                         ;
 ; Family                ; Cyclone III                           ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                                                      ;
 +----------------+----------------------------------------------------------------------------------------------+
 ; Device         ; EP3C16F484C6                                                                                 ;
-; JTAG usercode  ; 0x000C8A94                                                                                   ;
-; Checksum       ; 0x000C8A94                                                                                   ;
+; JTAG usercode  ; 0x000C88D9                                                                                   ;
+; Checksum       ; 0x000C88D9                                                                                   ;
 +----------------+----------------------------------------------------------------------------------------------+
 
 
@@ -103,14 +103,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Apr 24 13:12:41 2016
+    Info: Processing started: Sun Apr 24 21:04:50 2016
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off reactionTimer -c reactionTimer
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 428 megabytes
-    Info: Processing ended: Sun Apr 24 13:12:46 2016
-    Info: Elapsed time: 00:00:05
+    Info: Processing ended: Sun Apr 24 21:04:56 2016
+    Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:05
 
 

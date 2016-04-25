@@ -18,7 +18,11 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, Digit1, Digit0);
 	//reg LED;								
 	wire [3:0]BCD1,BCD0;					
 	wire c9; 								
-	reg[1:0]Q;								
+	reg[1:0]Q = 1;		
+	reg randomEnable=1; //this enables LFSR	
+	wire [3:0]randomNumber;		
+	reg enableCounting;
+	wire doneCounting;
 	//initialize Q to 1
 	//assign LED = 1;
 	
@@ -29,32 +33,46 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, Digit1, Digit0);
 		if(Q == 1)
 		begin
 			LED<=0; //LED OFF (LED CONTROLS IF LIGHT IS ON AND IF COUNTER IS ENABLED)
+			LED2<=0;
 
 		end
 		else if(Q == 2)
 		begin
-			LED<=1; //LED OFF
+			LED<=0; //LED OFF
 			LED2<=1;
+			enableCounting <= 1;
+			/*if(doneCounting)
+				Q <= 3;*/
+
 
 		end
 		else if(Q == 3)
 		begin
 			LED<=1; //LED ON
+			LED2<=0;
 
 		end
+		
 		
 	end
 
 
+	always@(negedge doneCounting)
+	begin
+	
+	 if(doneCounting)
+		Q <= 3;
+	end
+	
+	
 	always@(negedge Pushn) //when you press button, change state accordingly
 	begin
 	
 	/*
 		if(Q = 1) LED<=1;
 		else LED <=1;*/ //TEST
-		Q = 2;
 		//LED2 = 1;
-	/*
+	
 		if(Q==1) 
 		begin
 		Q<=2; //if in state 1, go to state 2
@@ -64,8 +82,8 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, Digit1, Digit0);
 		begin
 		Q<=1; //if in state 3, go to state 1 
 		end
-		else Q = Q;
-		*/
+		//else Q = Q;
+		
 	end
 
 	
@@ -77,16 +95,19 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, Digit1, Digit0);
 		else begin
 			LED<=0;
 		end
-	end
-	*/
+	end*/
+	
 
 	//assign LEDn = ~LED;
-	/*
+	
 	clockDivider hundredHertz(Clock,c9); //divide clock to get our frequency
 
 	BCDcount counter(c9,Reset,LED,BCD1,BCD0);
 	seg7 seg1(BCD1,Digit1);
-	seg7 seg0(BCD0,Digit0);*/
+	seg7 seg0(BCD0,Digit0);
+
+	LFSR ranNum(Clock,randomEnable,randomNumber);
+	countTo count1(c9, randomNumber, doneCounting, enableCounting);
 
 
 /*
@@ -114,7 +135,7 @@ module BCDcount(Clock,Clear,E,BCD1,BCD0);
 			BCD1<=0;
 			BCD0<=0;
 		end
-		else if (~Clear) //if enable...
+		else if (~Clear && E) //if enable...
 			if(BCD0==4'b1001)//if BCD0 is 9 (left digit)
 			begin
 				BCD0<=0; //set it back to 0
@@ -177,6 +198,45 @@ module clockDivider(Clock,c19);
 		c19 = Q[19];
 	end
 
+endmodule
+
+//this linear feedback shift register will produce a puedo random number
+module LFSR(Clock,E,Q);
+input Clock, E;
+output reg [3:0] Q = 0;
+
+always@(posedge Clock)
+begin
+	if(E)
+	begin
+		Q[3] = Q[3] ^ Q[0];
+		Q[2] = Q[3];
+		Q[1] = Q[2];
+		Q[0] = Q[1];
+	end
+
+end
+
+endmodule
+
+module countTo(clock, inputN, done, enable);
+	input clock, enable;
+	input inputN;
+	output reg done;
+	reg[3:0]counter=0;
+	always@(posedge clock)
+	begin
+		if(enable)
+		begin
+			counter=counter+1;
+			if(counter==inputN)
+				done = 1;
+		end
+		else begin
+			//counter = 0;
+			//done = 0;
+		end
+	end
 endmodule
 
 /*
