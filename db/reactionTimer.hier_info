@@ -1,9 +1,12 @@
 |reactionTimer
-Clock => Clock.IN2
+Clock => Clock.IN1
 Reset => Reset.IN1
-Pushn => Q~1.DATAIN
+Pushn => ss.CLK
 LED <= LED.DB_MAX_OUTPUT_PORT_TYPE
 LED2 <= LED2~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LED3 <= countTo:count1.port4
+LED4 <= BCDcount:counter.port5
+LED5 <= LED5~reg0.DB_MAX_OUTPUT_PORT_TYPE
 Digit1[7] <= seg7:seg1.port1
 Digit1[6] <= seg7:seg1.port1
 Digit1[5] <= seg7:seg1.port1
@@ -72,6 +75,7 @@ BCD0[0] <= BCD0[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 BCD0[1] <= BCD0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 BCD0[2] <= BCD0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 BCD0[3] <= BCD0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LED4 <= <GND>
 
 
 |reactionTimer|seg7:seg1
@@ -132,33 +136,56 @@ leds[2] <= leds.DB_MAX_OUTPUT_PORT_TYPE
 leds[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|reactionTimer|LFSR:ranNum
-Clock => Q[0]~reg0.CLK
-Clock => Q[1]~reg0.CLK
-Clock => Q[2]~reg0.CLK
-Clock => Q[3]~reg0.CLK
-E => Q[1]~reg0.ENA
-E => Q[0]~reg0.ENA
-E => Q[2]~reg0.ENA
-E => Q[3]~reg0.ENA
-Q[0] <= Q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-Q[1] <= Q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-Q[2] <= Q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-Q[3] <= Q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-
-
 |reactionTimer|countTo:count1
+clock => LED3~reg0.CLK
+clock => counter[0]~reg0.CLK
+clock => counter[1]~reg0.CLK
+clock => counter[2]~reg0.CLK
+clock => counter[3]~reg0.CLK
+clock => counter[4]~reg0.CLK
+clock => counter[5]~reg0.CLK
+clock => counter[6]~reg0.CLK
+clock => counter[7]~reg0.CLK
+clock => counter[8]~reg0.CLK
+clock => counter[9]~reg0.CLK
+clock => counter[10]~reg0.CLK
 clock => done~reg0.CLK
-clock => counter[0].CLK
-clock => counter[1].CLK
-clock => counter[2].CLK
-clock => counter[3].CLK
-inputN => Equal0.IN7
+inputN[0] => Equal0.IN52
+inputN[1] => Equal0.IN51
+inputN[2] => Equal0.IN50
+inputN[3] => Equal0.IN49
+inputN[4] => Equal0.IN48
+inputN[5] => Equal0.IN47
+inputN[6] => Equal0.IN46
+inputN[7] => Equal0.IN45
+inputN[8] => Equal0.IN44
+inputN[9] => Equal0.IN43
+inputN[10] => Equal0.IN42
 done <= done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+enable => LED3.OUTPUTSELECT
+enable => counter[2]~reg0.ENA
+enable => counter[1]~reg0.ENA
+enable => counter[0]~reg0.ENA
+enable => counter[3]~reg0.ENA
+enable => counter[4]~reg0.ENA
+enable => counter[5]~reg0.ENA
+enable => counter[6]~reg0.ENA
+enable => counter[7]~reg0.ENA
+enable => counter[8]~reg0.ENA
+enable => counter[9]~reg0.ENA
+enable => counter[10]~reg0.ENA
 enable => done~reg0.ENA
-enable => counter[0].ENA
-enable => counter[1].ENA
-enable => counter[2].ENA
-enable => counter[3].ENA
+LED3 <= LED3~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[0] <= counter[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[1] <= counter[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[2] <= counter[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[3] <= counter[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[4] <= counter[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[5] <= counter[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[6] <= counter[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[7] <= counter[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[8] <= counter[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[9] <= counter[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[10] <= counter[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
