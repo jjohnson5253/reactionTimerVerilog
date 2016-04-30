@@ -72,4 +72,7 @@ set_location_assignment PIN_G3 -to w
 set_location_assignment PIN_G21 -to Clock
 set_location_assignment PIN_J1 -to LED
 set_location_assignment PIN_J2 -to LED2
+set_location_assignment PIN_J3 -to LED3
+set_location_assignment PIN_F2 -to LED4
+set_location_assignment PIN_E1 -to LED5
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

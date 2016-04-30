@@ -2,16 +2,112 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'clockDivider:hundredHertz|c19'
+Slack : -1.854
+TNS   : -26.218
+
+Type  : Slow 1200mV 85C Model Setup 'Clock'
+Slack : -1.254
+TNS   : -20.469
+
+Type  : Slow 1200mV 85C Model Setup 'Pushn'
+Slack : 0.317
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clockDivider:hundredHertz|c19'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Clock'
+Slack : 0.358
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'Pushn'
+Slack : 0.384
+TNS   : 0.000
+
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Clock'
 Slack : -3.000
+TNS   : -30.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Pushn'
+Slack : -3.000
 TNS   : -4.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clockDivider:hundredHertz|c19'
+Slack : -1.000
+TNS   : -20.000
+
+Type  : Slow 1200mV 0C Model Setup 'clockDivider:hundredHertz|c19'
+Slack : -1.572
+TNS   : -21.459
+
+Type  : Slow 1200mV 0C Model Setup 'Clock'
+Slack : -1.130
+TNS   : -15.644
+
+Type  : Slow 1200mV 0C Model Setup 'Pushn'
+Slack : 0.398
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clockDivider:hundredHertz|c19'
+Slack : 0.298
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Clock'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'Pushn'
+Slack : 0.341
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Clock'
 Slack : -3.000
+TNS   : -30.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Pushn'
+Slack : -3.000
 TNS   : -4.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clockDivider:hundredHertz|c19'
+Slack : -1.000
+TNS   : -20.000
+
+Type  : Fast 1200mV 0C Model Setup 'Clock'
+Slack : -0.780
+TNS   : -4.089
+
+Type  : Fast 1200mV 0C Model Setup 'clockDivider:hundredHertz|c19'
+Slack : -0.590
+TNS   : -6.187
+
+Type  : Fast 1200mV 0C Model Setup 'Pushn'
+Slack : 0.624
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clockDivider:hundredHertz|c19'
+Slack : 0.179
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Clock'
+Slack : 0.188
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'Pushn'
+Slack : 0.206
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Clock'
 Slack : -3.000
-TNS   : -4.000
+TNS   : -31.715
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Pushn'
+Slack : -3.000
+TNS   : -4.175
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clockDivider:hundredHertz|c19'
+Slack : -1.000
+TNS   : -20.000
 
 ------------------------------------------------------------

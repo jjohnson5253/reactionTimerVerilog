@@ -1,0 +1,4 @@
+1.
+http://simplefpga.blogspot.com/2013/02/random-number-generator-in-verilog-fpga.html
+2.
+https://en.wikipedia.org/wiki/Linear_feedback_shift_register
