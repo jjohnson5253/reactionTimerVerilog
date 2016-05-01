@@ -67,8 +67,7 @@ set_location_assignment PIN_B14 -to Digit1[5]
 set_location_assignment PIN_E14 -to Digit1[6]
 set_location_assignment PIN_A15 -to Digit1[7]
 set_location_assignment PIN_H2 -to Pushn
-set_location_assignment PIN_J6 -to Reset
-set_location_assignment PIN_G3 -to w
+set_location_assignment PIN_G3 -to Reset
 set_location_assignment PIN_G21 -to Clock
 set_location_assignment PIN_J1 -to LED
 set_location_assignment PIN_J2 -to LED2

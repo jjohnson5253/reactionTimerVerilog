@@ -1,26 +1,26 @@
 |reactionTimer
-Clock => Clock.IN1
-Reset => Reset.IN1
-Pushn => ss.CLK
+Clock => Clock.IN2
+Reset => _.IN1
+Pushn => currentPush.CLK
 LED <= LED.DB_MAX_OUTPUT_PORT_TYPE
 LED2 <= LED2~reg0.DB_MAX_OUTPUT_PORT_TYPE
-LED3 <= countTo:count1.port4
+LED3 <= countTo:myCountTo.port4
 LED4 <= BCDcount:counter.port5
 LED5 <= LED5~reg0.DB_MAX_OUTPUT_PORT_TYPE
-Digit1[7] <= seg7:seg1.port1
-Digit1[6] <= seg7:seg1.port1
-Digit1[5] <= seg7:seg1.port1
-Digit1[4] <= seg7:seg1.port1
-Digit1[3] <= seg7:seg1.port1
-Digit1[2] <= seg7:seg1.port1
-Digit1[1] <= seg7:seg1.port1
-Digit0[7] <= seg7:seg0.port1
-Digit0[6] <= seg7:seg0.port1
-Digit0[5] <= seg7:seg0.port1
-Digit0[4] <= seg7:seg0.port1
-Digit0[3] <= seg7:seg0.port1
-Digit0[2] <= seg7:seg0.port1
-Digit0[1] <= seg7:seg0.port1
+Digit1[7] <= Digit1[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[6] <= Digit1[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[5] <= Digit1[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[4] <= Digit1[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[3] <= Digit1[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[2] <= Digit1[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit1[1] <= Digit1[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[7] <= Digit0[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[6] <= Digit0[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[5] <= Digit0[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[4] <= Digit0[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[3] <= Digit0[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[2] <= Digit0[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Digit0[1] <= Digit0[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |reactionTimer|clockDivider:hundredHertz
@@ -136,7 +136,22 @@ leds[2] <= leds.DB_MAX_OUTPUT_PORT_TYPE
 leds[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|reactionTimer|countTo:count1
+|reactionTimer|LFSR:ranNum
+Clock => num[0]~reg0.CLK
+Clock => num[1]~reg0.CLK
+Clock => num[2]~reg0.CLK
+Clock => num[3]~reg0.CLK
+enable => num[0]~reg0.ENA
+enable => num[1]~reg0.ENA
+enable => num[2]~reg0.ENA
+enable => num[3]~reg0.ENA
+num[0] <= num[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+num[1] <= num[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+num[2] <= num[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+num[3] <= num[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|reactionTimer|countTo:myCountTo
 clock => LED3~reg0.CLK
 clock => counter[0]~reg0.CLK
 clock => counter[1]~reg0.CLK
@@ -162,19 +177,19 @@ inputN[8] => Equal0.IN44
 inputN[9] => Equal0.IN43
 inputN[10] => Equal0.IN42
 done <= done~reg0.DB_MAX_OUTPUT_PORT_TYPE
+enable => done.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
+enable => counter.OUTPUTSELECT
 enable => LED3.OUTPUTSELECT
-enable => counter[2]~reg0.ENA
-enable => counter[1]~reg0.ENA
-enable => counter[0]~reg0.ENA
-enable => counter[3]~reg0.ENA
-enable => counter[4]~reg0.ENA
-enable => counter[5]~reg0.ENA
-enable => counter[6]~reg0.ENA
-enable => counter[7]~reg0.ENA
-enable => counter[8]~reg0.ENA
-enable => counter[9]~reg0.ENA
-enable => counter[10]~reg0.ENA
-enable => done~reg0.ENA
 LED3 <= LED3~reg0.DB_MAX_OUTPUT_PORT_TYPE
 counter[0] <= counter[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 counter[1] <= counter[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE

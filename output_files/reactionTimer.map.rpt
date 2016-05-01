@@ -1,5 +1,5 @@
 Analysis & Synthesis report for reactionTimer
-Sat Apr 30 02:09:40 2016
+Sat Apr 30 22:44:53 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -18,7 +18,7 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
  10. General Register Statistics
  11. Inverted Register Statistics
  12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Port Connectivity Checks: "countTo:count1"
+ 13. Port Connectivity Checks: "countTo:myCountTo"
  14. Elapsed Time Per Partition
  15. Analysis & Synthesis Messages
  16. Analysis & Synthesis Suppressed Messages
@@ -47,15 +47,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Apr 30 02:09:40 2016           ;
+; Analysis & Synthesis Status        ; Successful - Sat Apr 30 22:44:53 2016           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; reactionTimer                                   ;
 ; Top-level Entity Name              ; reactionTimer                                   ;
 ; Family                             ; Cyclone III                                     ;
-; Total logic elements               ; 88                                              ;
-;     Total combinational functions  ; 84                                              ;
-;     Dedicated logic registers      ; 48                                              ;
-; Total registers                    ; 48                                              ;
+; Total logic elements               ; 114                                             ;
+;     Total combinational functions  ; 108                                             ;
+;     Dedicated logic registers      ; 68                                              ;
+; Total registers                    ; 68                                              ;
 ; Total pins                         ; 22                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -176,28 +176,28 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 88          ;
+; Estimated Total logic elements              ; 114         ;
 ;                                             ;             ;
-; Total combinational functions               ; 84          ;
+; Total combinational functions               ; 108         ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 29          ;
-;     -- 3 input functions                    ; 19          ;
-;     -- <=2 input functions                  ; 36          ;
+;     -- 4 input functions                    ; 43          ;
+;     -- 3 input functions                    ; 18          ;
+;     -- <=2 input functions                  ; 47          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 56          ;
+;     -- normal mode                          ; 80          ;
 ;     -- arithmetic mode                      ; 28          ;
 ;                                             ;             ;
-; Total registers                             ; 48          ;
-;     -- Dedicated logic registers            ; 48          ;
+; Total registers                             ; 68          ;
+;     -- Dedicated logic registers            ; 68          ;
 ;     -- I/O registers                        ; 0           ;
 ;                                             ;             ;
 ; I/O pins                                    ; 22          ;
 ; Embedded Multiplier 9-bit elements          ; 0           ;
 ; Maximum fan-out node                        ; Clock~input ;
-; Maximum fan-out                             ; 27          ;
-; Total fan-out                               ; 394         ;
-; Average fan-out                             ; 2.24        ;
+; Maximum fan-out                             ; 47          ;
+; Total fan-out                               ; 514         ;
+; Average fan-out                             ; 2.34        ;
 +---------------------------------------------+-------------+
 
 
@@ -206,12 +206,13 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------+--------------+
 ; Compilation Hierarchy Node     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                      ; Library Name ;
 +--------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------+--------------+
-; |reactionTimer                 ; 84 (5)            ; 48 (7)       ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |reactionTimer                           ; work         ;
+; |reactionTimer                 ; 108 (12)          ; 68 (23)      ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |reactionTimer                           ; work         ;
 ;    |BCDcount:counter|          ; 16 (16)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|BCDcount:counter          ; work         ;
+;    |LFSR:ranNum|               ; 2 (2)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|LFSR:ranNum               ; work         ;
 ;    |clockDivider:hundredHertz| ; 20 (20)           ; 21 (21)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|clockDivider:hundredHertz ; work         ;
-;    |countTo:count1|            ; 29 (29)           ; 12 (12)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|countTo:count1            ; work         ;
-;    |seg7:seg0|                 ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|seg7:seg0                 ; work         ;
-;    |seg7:seg1|                 ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|seg7:seg1                 ; work         ;
+;    |countTo:myCountTo|         ; 38 (38)           ; 12 (12)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|countTo:myCountTo         ; work         ;
+;    |seg7:seg0|                 ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|seg7:seg0                 ; work         ;
+;    |seg7:seg1|                 ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |reactionTimer|seg7:seg1                 ; work         ;
 +--------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -233,9 +234,9 @@ Encoding Type:  One-Hot
 +---------------------------------------+----------------------------------------+
 ; Register name                         ; Reason for Removal                     ;
 +---------------------------------------+----------------------------------------+
-; LED5~reg0                             ; Stuck at GND due to stuck port data_in ;
 ; LED2~reg0                             ; Stuck at GND due to stuck port data_in ;
-; countTo:count1|LED3                   ; Stuck at GND due to stuck port data_in ;
+; LED5~reg0                             ; Stuck at GND due to stuck port data_in ;
+; countTo:myCountTo|LED3                ; Stuck at GND due to stuck port data_in ;
 ; Total Number of Removed Registers = 3 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
@@ -245,12 +246,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 48    ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Total registers                              ; 68    ;
+; Number of registers using Synchronous Clear  ; 10    ;
+; Number of registers using Synchronous Load   ; 3     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 21    ;
+; Number of registers using Clock Enable       ; 13    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -260,8 +261,9 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; countTo:count1|counter[0]              ; 2       ;
-; Total number of inverted registers = 1 ;         ;
+; LFSR:ranNum|num[0]                     ; 5       ;
+; countTo:myCountTo|counter[0]           ; 3       ;
+; Total number of inverted registers = 2 ;         ;
 +----------------------------------------+---------+
 
 
@@ -270,25 +272,22 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |reactionTimer|BCDcount:counter|BCD0[3] ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |reactionTimer|BCDcount:counter|BCD1[3] ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |reactionTimer|Digit0[3]~reg0           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |reactionTimer|BCDcount:counter|BCD0[0] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |reactionTimer|BCDcount:counter|BCD1[0] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "countTo:count1"                                                                              ;
-+---------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port          ; Type   ; Severity ; Details                                                                             ;
-+---------------+--------+----------+-------------------------------------------------------------------------------------+
-; inputN[2..1]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; inputN[10..8] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; inputN[6..5]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; inputN[7]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; inputN[4]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; inputN[3]     ; Input  ; Info     ; Stuck at GND                                                                        ;
-; inputN[0]     ; Input  ; Info     ; Stuck at GND                                                                        ;
-; counter       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "countTo:myCountTo"                                                                                                                                                                           ;
++---------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                                                                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; inputN        ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (11 bits) it drives.  The 21 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; inputN[10..8] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; inputN[0]     ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; counter       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                                 ;
++---------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -296,7 +295,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -306,27 +305,30 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Apr 30 02:09:33 2016
+    Info: Processing started: Sat Apr 30 22:44:48 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off reactionTimer -c reactionTimer
 Warning (20028): Parallel compilation is not licensed and has been disabled
-Warning (10261): Verilog HDL Event Control warning at reactionTimer.v(33): Event Control contains a complex event expression
-Info (12021): Found 5 design units, including 5 entities, in source file reactiontimer.v
+Warning (10261): Verilog HDL Event Control warning at reactionTimer.v(37): Event Control contains a complex event expression
+Info (12021): Found 6 design units, including 6 entities, in source file reactiontimer.v
     Info (12023): Found entity 1: reactionTimer
     Info (12023): Found entity 2: BCDcount
     Info (12023): Found entity 3: seg7
     Info (12023): Found entity 4: clockDivider
-    Info (12023): Found entity 5: countTo
+    Info (12023): Found entity 5: LFSR
+    Info (12023): Found entity 6: countTo
 Info (12127): Elaborating entity "reactionTimer" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at reactionTimer.v(24): object "enableLFSR" assigned a value but never read
-Warning (10855): Verilog HDL warning at reactionTimer.v(29): initial value for variable lastPush should be constant
+Warning (10036): Verilog HDL or VHDL warning at reactionTimer.v(31): object "val" assigned a value but never read
+Warning (10855): Verilog HDL warning at reactionTimer.v(30): initial value for variable lastPush should be constant
 Info (12128): Elaborating entity "clockDivider" for hierarchy "clockDivider:hundredHertz"
-Warning (10230): Verilog HDL assignment warning at reactionTimer.v(170): truncated value with size 32 to match size of target (20)
+Warning (10230): Verilog HDL assignment warning at reactionTimer.v(186): truncated value with size 32 to match size of target (20)
 Info (12128): Elaborating entity "BCDcount" for hierarchy "BCDcount:counter"
-Warning (10230): Verilog HDL assignment warning at reactionTimer.v(117): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at reactionTimer.v(120): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at reactionTimer.v(133): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at reactionTimer.v(136): truncated value with size 32 to match size of target (4)
 Info (12128): Elaborating entity "seg7" for hierarchy "seg7:seg1"
-Info (12128): Elaborating entity "countTo" for hierarchy "countTo:count1"
-Warning (10230): Verilog HDL assignment warning at reactionTimer.v(231): truncated value with size 32 to match size of target (11)
+Info (12128): Elaborating entity "LFSR" for hierarchy "LFSR:ranNum"
+Info (12128): Elaborating entity "countTo" for hierarchy "countTo:myCountTo"
+Warning (10230): Verilog HDL assignment warning at reactionTimer.v(247): truncated value with size 32 to match size of target (11)
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LED2" is stuck at GND
     Warning (13410): Pin "LED3" is stuck at GND
@@ -336,15 +338,15 @@ Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file C:/altera/13.0sp1/reactiontimer/reactionTimerVerilog/output_files/reactionTimer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 110 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 136 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 19 output pins
-    Info (21061): Implemented 88 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 13 warnings
+    Info (21061): Implemented 114 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 14 warnings
     Info: Peak virtual memory: 472 megabytes
-    Info: Processing ended: Sat Apr 30 02:09:40 2016
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Processing ended: Sat Apr 30 22:44:53 2016
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
 
 
 +------------------------------------------+

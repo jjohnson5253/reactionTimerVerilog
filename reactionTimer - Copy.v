@@ -16,8 +16,7 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, LED3, LED4,LED5, Digit1, Di
 	output reg LED, LED2, LED5;
 	output LED3, LED4;
 
-	output reg [1:7]Digit1,Digit0;	//sev seg display values
-	wire [1:7]count1,count0;
+	output wire [1:7]Digit1,Digit0;	//sev seg display values				
 	wire [3:0]BCD1,BCD0; //counter number					
 	wire c9; 		//divided clock signal					
 	reg[1:0]Q = 1;	//state variable	
@@ -25,48 +24,35 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, LED3, LED4,LED5, Digit1, Di
 	reg enableCount, enableLFSR;
 	wire doneCount;
 	reg lastPush;
-	reg currentPush;
+	reg ss;
 	wire [10:0]mycounter;
-	initial lastPush = currentPush;
+	initial lastPush = ss;
 	wire [10:0] val;
 	assign val = 150;
-	reg fail;
-	wire failWire;
-	initial fail = 0;
 
-	always@(posedge !Pushn) //change state of button pressed variable 'currentPush'
+	always@(posedge !Pushn) //change state of button pressed variable 'ss'
 	begin
-		currentPush = !currentPush;
+		ss = !ss;
 	end
-	
 	
 	always@(posedge Clock)
 	begin
 	
-		if(lastPush!=currentPush) //if button variable is different then before it was pushed..
+		if(ss!=lastPush) //if button variable is different then before it was pushed..
 		begin
 			case(Q)
-			1 : begin
-			Q <= 2;
-			fail <= 0;
-			end
-			2 : begin
-			fail <= 1;
-			Q <= 1;
-			end
+			1 : Q <= 2;
+			2 : ;
 			3 : Q <= 1;
 			endcase
-			lastPush=currentPush; //go back to normal
+			lastPush=ss;
 		end
-		
-		if(fail)begin
-			Digit0<=7'b0000001;
-			Digit1<=7'b1101010;
-		end
-		else begin
-			Digit0<=count0;
-			Digit1<=count1;
-		end
+		/*
+		if(doneCount)begin
+			if(Q==2)begin
+				LED5<=1;
+			end
+		end*/
 
 		case(Q)
 		1: begin
@@ -86,8 +72,6 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, LED3, LED4,LED5, Digit1, Di
 			end
 			else
 				LED5<=0;
-			Digit0<=7'b0000001;
-			Digit1<=7'b0000100;
 			end
 		3: begin
 			LED<=1; //LED ON
@@ -100,12 +84,12 @@ module reactionTimer(Clock, Reset, Pushn, LED, LED2, LED3, LED4,LED5, Digit1, Di
 	end
 	
 	clockDivider hundredHertz(Clock,c9); //divide clock to get our frequency
-	BCDcount counter(c9,!Reset,LED,BCD1,BCD0,LED4);
-	seg7 seg1(BCD1,count1);
-	seg7 seg0(BCD0,count0);
+	BCDcount counter(c9,Reset,LED,BCD1,BCD0,LED4);
+	seg7 seg1(BCD1,Digit1);
+	seg7 seg0(BCD0,Digit0);
 
-	LFSR ranNum(Clock,enableLFSR,randomNumber/*, LED3*/);
-	countTo myCountTo(c9, randomNumber * 10, doneCount, enableCount, LED3, mycounter);
+	//LFSR ranNum(Clock,enableLFSR,randomNumber, LED4);
+	countTo count1(c9, val, doneCount, enableCount, LED3, mycounter);
 
 endmodule
 
@@ -156,16 +140,16 @@ module seg7(bcd,leds);
 	always@(bcd)
 		case(bcd)  //whenever bcd changes, change led outputs accordingly
 					  //abcdefg
-			0: leds<=7'b0000001;//1111110;
-			1: leds<=7'b1001111;//0110000;
-			2: leds<=7'b0010010;//1101101;
-			3: leds<=7'b0000110;//1111001;
-			4: leds<=7'b1001100;//0110011;
-			5: leds<=7'b0100100;//1011011;
-			6: leds<=7'b0100000;//1011111;
-			7: leds<=7'b0001111;//1110000;
-			8: leds<=7'b0000000;//1111111;
-			9: leds<=7'b0000100;//1111011;
+			0: leds=7'b0000001;//1111110;
+			1: leds=7'b1001111;//0110000;
+			2: leds=7'b0010010;//1101101;
+			3: leds=7'b0000110;//1111001;
+			4: leds=7'b1001100;//0110011;
+			5: leds=7'b0100100;//1011011;
+			6: leds=7'b0100000;//1011111;
+			7: leds=7'b0001111;//1110000;
+			8: leds=7'b0000000;//1111111;
+			9: leds=7'b0000100;//1111011;
 			default: leds=7'bx;
 		endcase
 
@@ -191,29 +175,29 @@ module clockDivider(Clock,c19);
 endmodule
 
 ////////////////////////////////////////////////////////////////////////////
-
+/*
 //this linear feedback shift register will produce a psuedo random number
-module LFSR(Clock,enable,num/*LED*/);
+module LFSR(Clock,enable,num,LED);
 input Clock,enable;
 output reg [3:0] num;
-//output reg LED;
+output reg LED;
 initial num = 1;
 
 always@(posedge Clock)
 begin
 	if(enable)
 	begin
-		//LED = 1;
-		num[3] <= num[3] ^ num[0];
-		num[2] <= num[3];
-		num[1] <= num[2];
-		num[0] <= num[1];
+		LED = 1;
+		num[3] = num[3] ^ num[0];
+		num[2] = num[3];
+		num[1] = num[2];
+		num[0] = num[1];
 	end
-	//else
-		//LED = 0;
-end 
+	else
+		LED = 0;
+end
 endmodule
-
+*/
 ///////////////////////////////////////////////////////////////////////////////
 
 module countTo(clock, inputN, done, enable, LED3, counter);
@@ -250,9 +234,7 @@ module countTo(clock, inputN, done, enable, LED3, counter);
 			endcase
 		end
 		else begin
-			done <= 0;
 			LED3 <= 0;
-			counter <= 0;
 		end
 	end
 endmodule
